@@ -2,7 +2,7 @@
 
 Prepared for Dingaan Mahlangu, 2 November 2026.
 
-This Streamlit starter supports SALGA RFP 2334: concurrent implementation of the two fire services frameworks. It is a separate research workspace inspired by the requested Armoede approach. It does not claim to reproduce Armoede's screens. No GitHub repository, Streamlit deployment or live Supabase database has been created or changed.
+This Streamlit starter supports SALGA RFP 2334: concurrent implementation of the two fire services frameworks. It is a separate research workspace inspired by the requested Armoede approach. It does not claim to reproduce Armoede's screens. The private GitHub repository is mntungwa1/salga-fire-research. Separate study tables and the private salga-evidence bucket have been installed in the existing Supabase project. Streamlit deployment is blocked by the workspace private-app limit. Administrator membership and upload of the three source documents await explicit approval; they are not complete.
 
 ## Included
 
@@ -11,7 +11,7 @@ This Streamlit starter supports SALGA RFP 2334: concurrent implementation of the
 - Specialised-agency form: all 19 questions from Instrument 6; rating controls where specified, plus narrative responses. Other response formats are captured as text in this draft.
 - Draft saving and whole-interview submission. Every question must have a response or an explicit reason for absence before submission.
 - Preparation metadata, facilitator consent verification, separate recording verification and downloadable Word interview packs after saving and reopening.
-- Document centre with the three supplied source files in their original formats.
+- Document centre ready for the three source files; the online repository does not yet contain them because upload approval is pending.
 - Restricted evidence uploads, evidence references and owner/admin access.
 - Filterable sample map and sample register for 18 proposed municipalities.
 - Restricted CSV/JSON exports for researchers and administrators.
@@ -77,7 +77,7 @@ Use fictional test records before real data collection:
 - Exported responses and Word packs preserve question IDs and the v1.0 source wording.
 - Test expired sessions, wrong passwords, sign-out, database interruption, simultaneous users and the no-secrets live configuration.
 
-Database policies are drafted but have not been executed against a live project in this delivery. The included verification report describes local checks only.
+Database policies have been installed and inspected in the live project. An authenticated non-member check returned zero visible members, interviews, evidence records and files. Full owner/admin acceptance tests await approved membership. No research records have been collected.
 
 ## Next design phase
 
