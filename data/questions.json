@@ -1,0 +1,296 @@
+[
+  {
+    "id": "M1",
+    "instrument": 5,
+    "section": "Mandate clarity",
+    "text": "How is the fire function divided between the district municipality and the local municipalities in your area, and is that division formally recorded? Probe: has the division been adjusted by the provincial Member of the Executive Council; were funds, staff or assets transferred with it?",
+    "anchor": "Objective one; research question one. Municipal Structures Act, section 84(1)(j), (2) and (3)"
+  },
+  {
+    "id": "M2",
+    "instrument": 5,
+    "section": "Mandate clarity",
+    "text": "Which unit discharges the veldfire mandate under the National Veld and Forest Fire Act, and which the structural mandate under the Fire Brigade Services Act? Where do they meet, overlap or leave a gap?",
+    "anchor": "Objective one; research question one. Both Acts"
+  },
+  {
+    "id": "M3",
+    "instrument": 5,
+    "section": "Mandate clarity",
+    "text": "Was an assessment of service delivery mechanisms carried out before the current arrangement was chosen? Probe: who decided, and on what basis?",
+    "anchor": "Objective two; research question two. Municipal Systems Act, section 78"
+  },
+  {
+    "id": "M4",
+    "instrument": 5,
+    "section": "Mandate clarity",
+    "text": "Where is the law unclear to you? Give a recent example where uncertainty about who was responsible affected the response to a fire.",
+    "anchor": "Objective one; research question one"
+  },
+  {
+    "id": "M5",
+    "instrument": 5,
+    "section": "Institutional architecture",
+    "text": "Is the municipality a member of a fire protection association, and does it take an active part? Probe: is the Chief Fire Officer appointed as the association\u2019s Fire Protection Officer; are the association\u2019s rules aligned with the fire by-laws?",
+    "anchor": "Objective two; research questions two and three. National Veld and Forest Fire Act"
+  },
+  {
+    "id": "M6",
+    "instrument": 5,
+    "section": "Institutional architecture",
+    "text": "What agreements govern fire services between the district and local municipalities, and with neighbouring municipalities and private fire services? How are they used during an incident?",
+    "anchor": "Objective two; research questions two and three. Fire Brigade Services Act; Municipal Systems Act"
+  },
+  {
+    "id": "M7",
+    "instrument": 5,
+    "section": "Institutional architecture",
+    "text": "Is the veldfire management strategy reflected in the municipal disaster management plan and in the integrated development plan? Probe: who is responsible for alignment?",
+    "anchor": "Objective two; research question two. Disaster Management Act, section 53"
+  },
+  {
+    "id": "M8",
+    "instrument": 5,
+    "section": "Institutional architecture",
+    "text": "Of the arrangements you have described, which works best, and what conditions make it work? Which has failed, and why?",
+    "anchor": "Objective three; research question three"
+  },
+  {
+    "id": "M9",
+    "instrument": 5,
+    "section": "Institutional architecture",
+    "text": "Has the presumption of negligence under the National Veld and Forest Fire Act affected how the municipality manages veldfire risk or membership of an association?",
+    "anchor": "Objective two; research question three. National Veld and Forest Fire Act, section 34"
+  },
+  {
+    "id": "M10",
+    "instrument": 5,
+    "section": "People and skills",
+    "text": "Is the fire service staffed to the approved establishment, and is the establishment adequate for both mandates? Probe: vacancies, reliance on volunteers or seasonal capacity.",
+    "anchor": "Objective five. Fire Brigade Services Act"
+  },
+  {
+    "id": "M11",
+    "instrument": 5,
+    "section": "People and skills",
+    "text": "Do personnel hold the competencies needed for both structural and wildland fire? Probe: access to training, the dual role of Chief Fire Officer and Fire Protection Officer.",
+    "anchor": "Objective five; research question one"
+  },
+  {
+    "id": "M12",
+    "instrument": 5,
+    "section": "People and skills",
+    "text": "To whom does the Chief Fire Officer report, and how does that reporting line affect the priority given to fire services?",
+    "anchor": "Objective five"
+  },
+  {
+    "id": "M13",
+    "instrument": 5,
+    "section": "Funding",
+    "text": "How is the fire service funded: equitable share, own revenue, grants or other sources? Probe: trend over three years; how the fire budget fares against revenue-generating services.",
+    "anchor": "Objectives one and four; research question one"
+  },
+  {
+    "id": "M14",
+    "instrument": 5,
+    "section": "Funding",
+    "text": "How are fire appliances replaced, and how old is the fleet? Probe: use of the Municipal Infrastructure Grant.",
+    "anchor": "Objectives one and four"
+  },
+  {
+    "id": "M15",
+    "instrument": 5,
+    "section": "Funding",
+    "text": "Does the municipality charge for fire services and for fire safety functions, such as inspections, certification and permits, and how much is collected?",
+    "anchor": "Objective four. Fire Brigade Services Act and its regulations"
+  },
+  {
+    "id": "M16",
+    "instrument": 5,
+    "section": "Funding",
+    "text": "Has the municipality ever recovered the cost of responding to an incident from the responsible party?",
+    "anchor": "Objective four. National Environmental Management Act 107 of 1998, section 30"
+  },
+  {
+    "id": "M17",
+    "instrument": 5,
+    "section": "Information and early warning",
+    "text": "How does the municipality receive and act on fire danger ratings and warnings? Probe: who issues them, who acts on them, and how quickly.",
+    "anchor": "Objectives one and two. National Veld and Forest Fire Act"
+  },
+  {
+    "id": "M18",
+    "instrument": 5,
+    "section": "Information and early warning",
+    "text": "How are fire incidents recorded, and is the information shared with the fire protection association, the province or national government?",
+    "anchor": "Objectives one and six"
+  },
+  {
+    "id": "M19",
+    "instrument": 5,
+    "section": "Partnerships and prevention",
+    "text": "Which partners contribute to fire management in the area, such as landowners, fire protection associations, Working on Fire or private fire services, and how is their contribution coordinated?",
+    "anchor": "Objective two; research questions two and three"
+  },
+  {
+    "id": "M20",
+    "instrument": 5,
+    "section": "Partnerships and prevention",
+    "text": "What share of the service\u2019s effort goes to prevention rather than response? What prevents a greater shift?",
+    "anchor": "Objectives one and four"
+  },
+  {
+    "id": "M21",
+    "instrument": 5,
+    "section": "Partnerships and prevention",
+    "text": "How does the municipality manage fire risk in informal settlements, which neither Act fully addresses?",
+    "anchor": "Objectives one and four; research question four"
+  },
+  {
+    "id": "M22",
+    "instrument": 5,
+    "section": "What would work",
+    "text": "If you could redesign the arrangement, what would allow the municipality to meet both Acts within its means? Probe: which other municipality or country does it well?",
+    "anchor": "Objective four; research question four"
+  },
+  {
+    "id": "M23",
+    "instrument": 5,
+    "section": "What would work",
+    "text": "What would need to change to make that possible: an administrative step, a delegation, a by-law, a regulation, or an amendment to the law?",
+    "anchor": "Objectives four and six; research question four"
+  },
+  {
+    "id": "A1",
+    "instrument": 6,
+    "section": "Agency survey",
+    "text": "Name of agency and the unit completing the survey",
+    "anchor": "Text"
+  },
+  {
+    "id": "A2",
+    "instrument": 6,
+    "section": "Agency survey",
+    "text": "Which legislation gives the agency its mandate in relation to fire?",
+    "anchor": "Text"
+  },
+  {
+    "id": "A3",
+    "instrument": 6,
+    "section": "Agency survey",
+    "text": "How often does the agency engage with municipalities on fire matters?",
+    "anchor": "Weekly, monthly, quarterly, annually, rarely"
+  },
+  {
+    "id": "A4",
+    "instrument": 6,
+    "section": "Agency survey",
+    "text": "The division of fire responsibilities between district and local municipalities is clear in law.",
+    "anchor": "Scale of one (strongly disagree) to five (strongly agree), with comment"
+  },
+  {
+    "id": "A5",
+    "instrument": 6,
+    "section": "Agency survey",
+    "text": "The responsibilities of municipalities under the two Acts are well understood by municipalities.",
+    "anchor": "Scale of one (strongly disagree) to five (strongly agree), with comment"
+  },
+  {
+    "id": "A6",
+    "instrument": 6,
+    "section": "Agency survey",
+    "text": "Which provisions of either Act, in the agency\u2019s experience, cause the greatest uncertainty in practice?",
+    "anchor": "Text"
+  },
+  {
+    "id": "A7",
+    "instrument": 6,
+    "section": "Agency survey",
+    "text": "Municipal membership of fire protection associations works well in practice.",
+    "anchor": "Scale of one (strongly disagree) to five (strongly agree), with comment"
+  },
+  {
+    "id": "A8",
+    "instrument": 6,
+    "section": "Agency survey",
+    "text": "Appointing the Chief Fire Officer as Fire Protection Officer improves coordination.",
+    "anchor": "Scale of one (strongly disagree) to five (strongly agree), with comment"
+  },
+  {
+    "id": "A9",
+    "instrument": 6,
+    "section": "Agency survey",
+    "text": "Mutual assistance agreements are effective during major incidents.",
+    "anchor": "Scale of one (strongly disagree) to five (strongly agree), with comment"
+  },
+  {
+    "id": "A10",
+    "instrument": 6,
+    "section": "Agency survey",
+    "text": "Which mechanism or arrangement, in the agency\u2019s experience, does most to support concurrent implementation, and under what conditions does it work?",
+    "anchor": "Text"
+  },
+  {
+    "id": "A11",
+    "instrument": 6,
+    "section": "Agency survey",
+    "text": "Municipal fire services have the skills required to discharge both mandates.",
+    "anchor": "Scale of one (strongly disagree) to five (strongly agree), with comment"
+  },
+  {
+    "id": "A12",
+    "instrument": 6,
+    "section": "Agency survey",
+    "text": "Current funding arrangements are adequate for municipalities to discharge both mandates.",
+    "anchor": "Scale of one (strongly disagree) to five (strongly agree), with comment"
+  },
+  {
+    "id": "A13",
+    "instrument": 6,
+    "section": "Agency survey",
+    "text": "Which funding sources available to municipalities for fire services are, in the agency\u2019s view, under-used?",
+    "anchor": "Text"
+  },
+  {
+    "id": "A14",
+    "instrument": 6,
+    "section": "Agency survey",
+    "text": "Fire danger warnings reach and are acted on by municipalities in time.",
+    "anchor": "Scale of one (strongly disagree) to five (strongly agree), with comment"
+  },
+  {
+    "id": "A15",
+    "instrument": 6,
+    "section": "Agency survey",
+    "text": "Fire incident data held by municipalities is adequate for planning.",
+    "anchor": "Scale of one (strongly disagree) to five (strongly agree), with comment"
+  },
+  {
+    "id": "A16",
+    "instrument": 6,
+    "section": "Agency survey",
+    "text": "How should responsibility for fire risk in informal settlements be allocated and funded?",
+    "anchor": "Text"
+  },
+  {
+    "id": "A17",
+    "instrument": 6,
+    "section": "Agency survey",
+    "text": "What operational model, coordination mechanism or governance arrangement would most improve concurrent implementation?",
+    "anchor": "Text"
+  },
+  {
+    "id": "A18",
+    "instrument": 6,
+    "section": "Agency survey",
+    "text": "Which changes can be made administratively or by delegation, and which require regulation or amendment of legislation?",
+    "anchor": "Text"
+  },
+  {
+    "id": "A19",
+    "instrument": 6,
+    "section": "Agency survey",
+    "text": "May the agency\u2019s institutional position be attributed to it by name in the study?",
+    "anchor": "Yes, No"
+  }
+]
