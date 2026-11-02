@@ -4,6 +4,7 @@ from zoneinfo import ZoneInfo
 from uuid import uuid4
 from io import BytesIO
 import json, os, re
+from urllib.parse import urlsplit, parse_qs
 import pandas as pd
 import streamlit as st
 from docx import Document
@@ -18,6 +19,21 @@ def setting(key, default=''):
     if key in os.environ: return os.environ[key]
     try: return st.secrets.get(key, default)
     except FileNotFoundError: return default
+
+
+def recovery_token_from_link(value, project_url):
+    """Accept only this project's Supabase recovery link; never request its URL."""
+    link = urlsplit(value.strip())
+    project = urlsplit(project_url)
+    if link.scheme != 'https' or link.netloc != project.netloc or link.path.rstrip('/') != '/auth/v1/verify':
+        raise ValueError('Use the original Supabase password reset link from your email.')
+    query = parse_qs(link.query)
+    if query.get('type') != ['recovery']:
+        raise ValueError('This is not a password reset link. Request a new password reset email.')
+    tokens = query.get('token_hash', query.get('token', []))
+    if len(tokens) != 1 or not tokens[0]:
+        raise ValueError('The reset link is incomplete.')
+    return tokens[0]
 
 # No globally cached authenticated client: each browser session has its own client.
 try:
@@ -35,6 +51,42 @@ else:
             st.error('Administrator setup required: configure Supabase URL and publishable key.'); st.stop()
         st.session_state.client = create_client(url, key)
     client = st.session_state.client
+    if st.session_state.pop('password_reset_complete', False):
+        st.success('Password updated. Sign in below with your new password.')
+    if st.session_state.get('reset_in_progress'):
+        st.subheader('Set your new password')
+        st.caption('This updates your Supabase Auth account password, including other apps that use this same account.')
+        with st.form('new_password', clear_on_submit=True):
+            new_password = st.text_input('New password (at least 12 characters)', type='password')
+            repeat_password = st.text_input('Repeat new password', type='password')
+            set_password = st.form_submit_button('Save new password')
+        if set_password:
+            if len(new_password) < 12:
+                st.error('Use at least 12 characters.')
+            elif new_password != repeat_password:
+                st.error('The two passwords do not match.')
+            else:
+                try:
+                    client.auth.get_user()
+                    client.auth.update_user({'password':new_password})
+                except Exception:
+                    st.error('Password update failed. Check the password policy, or request a fresh reset link if the recovery session expired.')
+                else:
+                    st.session_state.pop('reset_in_progress', None)
+                    try:
+                        client.auth.sign_out()
+                    except Exception:
+                        st.session_state.pop('client', None)
+                    st.session_state.password_reset_complete = True
+                    st.rerun()
+        if st.button('Cancel password reset'):
+            st.session_state.pop('reset_in_progress', None)
+            try:
+                client.auth.sign_out()
+            except Exception:
+                st.session_state.pop('client', None)
+            st.rerun()
+        st.stop()
     if not client.auth.get_session():
         st.caption('Use your Supabase Auth email and password. APP_PASSWORD and ADMIN_PASSWORD in Streamlit Secrets do not set this password.')
         with st.form('login'):
@@ -56,6 +108,43 @@ else:
                             st.error('Too many attempts. Wait a few minutes before trying again.')
                         else:
                             st.error('Sign-in could not be completed. Check the Supabase connection settings or contact the project administrator.')
+        with st.expander('Forgot password? Reset it here'):
+            st.write('1. Request a password reset email. 2. In the email, right-click the password reset link and copy its address without opening it. 3. Paste it below, verify it, and choose your new password here.')
+            with st.form('request_password_reset'):
+                reset_email = st.text_input('Account email')
+                request_reset = st.form_submit_button('Send password reset email')
+            if request_reset:
+                import time
+                if not reset_email.strip() or '@' not in reset_email:
+                    st.error('Enter a valid email address.')
+                elif time.time() - st.session_state.get('last_reset_request', 0) < 60:
+                    st.info('Please wait at least one minute before requesting another reset email.')
+                else:
+                    try:
+                        client.auth.reset_password_for_email(reset_email.strip())
+                        st.session_state.last_reset_request = time.time()
+                        st.success('Reset requested. If this account is eligible, check your inbox and spam folder. Copy the reset link address from the email into the field below.')
+                    except Exception:
+                        st.error('Reset email could not be requested. Please wait a few minutes or ask the administrator to check email delivery.')
+            with st.form('verify_password_reset', clear_on_submit=True):
+                reset_link = st.text_input('Paste password reset link from email', type='password')
+                verify_reset = st.form_submit_button('Verify reset link')
+            if verify_reset:
+                try:
+                    token_hash = recovery_token_from_link(reset_link, setting('SUPABASE_URL'))
+                except ValueError as exc:
+                    st.error(str(exc))
+                else:
+                    try:
+                        result = client.auth.verify_otp({'token_hash':token_hash, 'type':'recovery'})
+                        if not result.session:
+                            raise ValueError('No recovery session')
+                        client.auth.get_user()
+                    except Exception:
+                        st.error('This link is expired or already used. Request a fresh reset email and copy its link without opening it.')
+                    else:
+                        st.session_state.reset_in_progress = True
+                        st.rerun()
         with st.expander('Email confirmation help'):
             st.write('If your account email is unconfirmed, request a new confirmation message. Open the link in your email, then return to this app to sign in. No password is changed.')
             with st.form('resend_confirmation'):
