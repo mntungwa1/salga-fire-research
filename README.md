@@ -2,7 +2,7 @@
 
 Prepared for Dingaan Mahlangu, 2 November 2026.
 
-This Streamlit starter supports SALGA RFP 2334: concurrent implementation of the two fire services frameworks. It is a separate research workspace inspired by the requested Armoede approach. It does not claim to reproduce Armoede's screens. The private GitHub repository is mntungwa1/salga-fire-research. Separate study tables and the private salga-evidence bucket have been installed in the existing Supabase project. Streamlit deployment is blocked by the workspace private-app limit. Administrator membership and upload of the three source documents await explicit approval; they are not complete.
+This Streamlit starter supports SALGA RFP 2334: concurrent implementation of the two fire services frameworks. It is a separate research workspace inspired by the requested Armoede approach. It does not claim to reproduce Armoede's screens. The public code repository is mntungwa1/salga-fire-research. Separate study tables and the private salga-evidence bucket have been installed in the existing Supabase project. The app is deployed at https://salga-fire-research.streamlit.app/ with Python 3.12, Supabase configuration set in Streamlit Secrets, and DEMO_MODE=false. The live sign-in page has been verified. Administrator membership and upload of the three source documents await explicit approval; they are not complete.
 
 ## Included
 
@@ -59,11 +59,11 @@ Authentication uses the caller's user session and a publishable key, not a servi
 
 ## GitHub and Streamlit deployment
 
-Create a dedicated **private** repository such as `salga-fire-research`. Upload this folder's contents, including `app.py`, `requirements.txt`, `data`, `documents`, `.streamlit/config.toml` and `schema.sql`. Do not upload credentials or collected evidence. The bundled source documents contain project details and business contact information; retain restricted repository access.
+The user approved public source code and questionnaire text on 2 November 2026. The repository contains app code, configuration templates and question/sample data. Do not upload source project documents, credentials, collected evidence or responses into this public repository. The three supplied project documents remain offline pending approval for private Supabase storage.
 
 In Streamlit Community Cloud select that repository and `app.py` as entry point. Use Python 3.11/3.12 and configure the Secrets settings above with DEMO_MODE=false. App users sign in through Supabase; they should not need a ChatGPT account. Hosting/repository access configuration must be checked during deployment.
 
-The document files are packaged with code so authenticated study members can download them. New versions can be committed through GitHub. Uploaded research evidence and interview responses belong in Supabase, not the repository or Streamlit's ephemeral disk. Office/ODT files are downloadable; inline PDF previews, document upload/version control and document comments remain future work.
+The document module will be connected to private Supabase project-document storage after upload approval; supplied documents must not be committed to this public repository. Uploaded research evidence and interview responses belong in Supabase, not the repository or Streamlit's ephemeral disk. Office/ODT files are downloadable; inline PDF previews, document upload/version control and document comments remain future work.
 
 ## Required live acceptance checks
 
