@@ -36,13 +36,48 @@ else:
         st.session_state.client = create_client(url, key)
     client = st.session_state.client
     if not client.auth.get_session():
+        st.caption('Use your Supabase Auth email and password. APP_PASSWORD and ADMIN_PASSWORD in Streamlit Secrets do not set this password.')
         with st.form('login'):
             email=st.text_input('Email'); password=st.text_input('Password', type='password')
             if st.form_submit_button('Sign in'):
-                try:
-                    client.auth.sign_in_with_password({'email':email,'password':password}); st.rerun()
-                except Exception:
-                    st.error('Sign-in failed. Check credentials or ask the project administrator.')
+                if not email.strip() or not password:
+                    st.error('Enter your email and password.')
+                else:
+                    try:
+                        client.auth.sign_in_with_password({'email':email.strip(),'password':password})
+                        st.rerun()
+                    except Exception as exc:
+                        code = str(getattr(exc, 'code', ''))
+                        if code == 'email_not_confirmed':
+                            st.error('Your email has not been confirmed. Use Resend confirmation email below, open the confirmation link in your inbox, then return here and sign in.')
+                        elif code in {'invalid_credentials', 'invalid_grant'}:
+                            st.error('The email or Supabase Auth password is incorrect. This is not your Streamlit APP_PASSWORD, ADMIN_PASSWORD or Supabase dashboard password.')
+                        elif code in {'over_request_rate_limit', 'over_email_send_rate_limit'}:
+                            st.error('Too many attempts. Wait a few minutes before trying again.')
+                        else:
+                            st.error('Sign-in could not be completed. Check the Supabase connection settings or contact the project administrator.')
+        with st.expander('Email confirmation help'):
+            st.write('If your account email is unconfirmed, request a new confirmation message. Open the link in your email, then return to this app to sign in. No password is changed.')
+            with st.form('resend_confirmation'):
+                confirm_email = st.text_input('Email to confirm')
+                send_confirmation = st.form_submit_button('Resend confirmation email')
+            if send_confirmation:
+                import time
+                if not confirm_email.strip() or '@' not in confirm_email:
+                    st.error('Enter a valid email address.')
+                elif time.time() - st.session_state.get('last_confirmation_request', 0) < 60:
+                    st.info('Please wait at least one minute before requesting another email.')
+                else:
+                    try:
+                        client.auth.resend({'type':'signup', 'email':confirm_email.strip()})
+                        st.session_state.last_confirmation_request = time.time()
+                        st.success('Confirmation requested. If this account is eligible, check your inbox and spam folder, open the confirmation link, then return here to sign in.')
+                    except Exception as exc:
+                        code = str(getattr(exc, 'code', ''))
+                        if code in {'over_request_rate_limit', 'over_email_send_rate_limit'}:
+                            st.error('Email limit reached. Wait a few minutes, then try again.')
+                        else:
+                            st.error('The confirmation request failed. Please ask the administrator to check Supabase email delivery.')
         st.stop()
     if st.sidebar.button('Sign out'):
         client.auth.sign_out(); st.session_state.clear(); st.rerun()
