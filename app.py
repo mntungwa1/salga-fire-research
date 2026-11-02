@@ -148,10 +148,43 @@ elif page=='Interview workspace':
 
 elif page=='Documents':
     st.subheader('Project document centre')
-    st.caption('Supplied source files are available for download. Convert Office/ODT documents to PDF for browser previews in a later release.')
-    for p in sorted(list((ROOT/'documents').glob('*')) + [x for x in ROOT.iterdir() if x.suffix.lower() in {'.docx','.odt','.pptx'}]):
-        st.download_button(p.name,p.read_bytes(),file_name=p.name)
-    st.info('The supplied instruments also contain letters, consent forms, case-study and appraisal protocols, the scoring rubric and close-out certificates. Only Instruments 5 and 6 have been converted into digital forms in this draft.')
+    st.caption('Documents are restricted to approved study members. Office and ODT files download in their original formats.')
+    if demo:
+        for p in sorted((ROOT/'documents').glob('*')):
+            st.download_button(p.name,p.read_bytes(),file_name=p.name)
+    else:
+        bucket = client.storage.from_('salga-documents')
+        if admin:
+            with st.form('project_document_upload', clear_on_submit=True):
+                uploads = st.file_uploader('Add project documents (maximum 10 MB each)', type=['pdf','docx','odt','pptx','xlsx','txt'], accept_multiple_files=True)
+                upload_docs = st.form_submit_button('Upload project documents')
+            if upload_docs:
+                if not uploads:
+                    st.error('Choose at least one document.')
+                else:
+                    for file in uploads:
+                        if file.size > 10*1024*1024:
+                            st.error(file.name + ': exceeds 10 MB.')
+                            continue
+                        safe = re.sub(r'[^A-Za-z0-9._-]', '_', file.name)
+                        try:
+                            bucket.upload(safe, file.getvalue(), {'content-type': file.type or 'application/octet-stream'})
+                            st.success('Uploaded: ' + file.name)
+                        except Exception:
+                            st.error('Upload failed for ' + file.name + '. A file with the same name may already exist; use a versioned filename.')
+        try:
+            docs = bucket.list(options={'limit':100, 'sortBy':{'column':'name','order':'asc'}})
+            files = [d for d in docs if d.get('id')]
+            if not files:
+                st.info('No project documents have been uploaded yet.')
+            for d in files:
+                name=d['name']
+                if st.button('Prepare download: ' + name, key='prepare_doc_' + name):
+                    data=bucket.download(name)
+                    st.download_button('Download ' + name, data, file_name=name, key='download_doc_' + name)
+        except Exception:
+            st.error('Unable to load project documents. Check your study membership and storage access.')
+    st.info('The instruments include letters, consent forms, case-study and appraisal protocols, the scoring rubric and close-out certificates. Instruments 5 and 6 are available as digital interview forms.')
 
 elif page=='Evidence register':
     st.subheader('Restricted documentary evidence')
